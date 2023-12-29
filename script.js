@@ -1,9 +1,7 @@
 let fromInputData = document.getElementById("input");
 let todoList = document.getElementById("todos");
 let addTaskButton = document.getElementById("TaskButtonAdd");
-let deleteTaskButton = document.createElement("button");
-let checkBox = document.createElement("input");
-checkBox.type = "checkbox";
+
 function addtasks() {
     let todo = fromInputData.value;
     let listTasks = document.createElement("li");
@@ -12,6 +10,9 @@ function addtasks() {
     todoList.appendChild(listTasks);
     fromInputData.value = "";
 
+    let deleteTaskButton = document.createElement("button");
+    let checkBox = document.createElement("input");
+    checkBox.type = "checkbox";
     deleteTaskButton.innerText = "Delete";
     listTasks.appendChild(deleteTaskButton);
 
@@ -23,7 +24,7 @@ function addtasks() {
     deleteTaskButton.addEventListener("click", () => {
         listTasks.remove();
     })
-    editTask(listTasks);
+    editTask(listTasks,deleteTaskButton,checkBox);
     checkBox.addEventListener("click", () => {
         if (checkBox.checked) {
             listTasks.style.textDecoration = "line-through";
@@ -34,7 +35,7 @@ function addtasks() {
 
 }
 
-function editTask(listTasks) {
+function editTask(listTasks,deleteTaskButton,checkBox) {
     let editTaskButton = document.createElement("button");
     editTaskButton.innerText = "Edit";
     listTasks.appendChild(editTaskButton);
